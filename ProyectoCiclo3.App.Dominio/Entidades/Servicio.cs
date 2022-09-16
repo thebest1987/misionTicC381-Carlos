@@ -9,5 +9,4 @@ namespace ProyectoCiclo3.App.Dominio{
         public string hora { get; set; }
         public Encomienda encomienda { get; set; }
     }
-
 }
