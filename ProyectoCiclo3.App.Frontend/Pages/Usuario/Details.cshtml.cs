@@ -19,10 +19,12 @@ namespace ProyectoCiclo3.App.Frontend.Pages
             this.repositorioUsuarios=repositorioUsuarios;
        }
  
-        public IActionResult OnGet(int usuarioId)
+        public IActionResult OnGet(int UsuarioId)
         {
-               Usuario=repositorioUsuarios.GetWithId(usuarioId);
+                Usuario=repositorioUsuarios.GetWithId(UsuarioId);
                 return Page(); 
         }
     }
 }
+
+    
