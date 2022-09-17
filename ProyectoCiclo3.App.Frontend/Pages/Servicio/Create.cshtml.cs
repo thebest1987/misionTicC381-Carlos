@@ -16,7 +16,7 @@ namespace ProyectoCiclo3.App.Frontend.Pages
         private readonly RepositorioEncomiendas repositorioEncomienda;
         public IEnumerable<Usuario> Usuarios {get;set;}
         public IEnumerable<Encomienda> Encomiendas {get;set;}
- 
+
        [BindProperty]
         public Servicio Servicio {get;set;}
  
@@ -26,7 +26,7 @@ namespace ProyectoCiclo3.App.Frontend.Pages
             this.repositorioUsuario=repositorioUsuario;
             this.repositorioEncomienda=repositorioEncomienda;
        }
- 
+
         public void OnGet()
         {
             Usuarios=repositorioUsuario.GetAll();
@@ -42,6 +42,6 @@ namespace ProyectoCiclo3.App.Frontend.Pages
             Servicio = repositorioServicio.Create(origen, destino, fecha, hora, encomienda);            
             return RedirectToPage("./List");
         }
- 
+
     }
 }

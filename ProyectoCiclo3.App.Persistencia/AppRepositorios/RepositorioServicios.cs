@@ -3,14 +3,14 @@ using ProyectoCiclo3.App.Dominio;
 using System.Linq;
 using System;
 using Microsoft.EntityFrameworkCore;
- 
+
 namespace ProyectoCiclo3.App.Persistencia.AppRepositorios
 {
     public class RepositorioServicios
     { 
         
         private readonly AppContext _appContext = new AppContext();   
- 
+
         public IEnumerable<Servicio> GetAll()
         {
            return _appContext.Servicios.Include(u => u.origen)
@@ -21,7 +21,7 @@ namespace ProyectoCiclo3.App.Persistencia.AppRepositorios
         public Servicio GetWithId(int id){
             return _appContext.Servicios.Find(id);
         }
- 
+
         public Servicio Update(Servicio newServicio){
             var encomienda = _appContext.Servicios.Find(newServicio.id);
             if(encomienda != null){
@@ -35,7 +35,7 @@ namespace ProyectoCiclo3.App.Persistencia.AppRepositorios
             }
         return encomienda;
         }
- 
+
         public Servicio Create(int origen, int destino, string fecha, string hora, int encomienda)
         {
             var newServicio = new Servicio();
@@ -44,13 +44,13 @@ namespace ProyectoCiclo3.App.Persistencia.AppRepositorios
             newServicio.encomienda = _appContext.Encomiendas.Find(encomienda);         
             newServicio.fecha = DateTime.Parse(fecha);
             newServicio.hora = hora;
- 
+
            var addServicio = _appContext.Servicios.Add(newServicio);
             //Guardar en base de datos
             _appContext.SaveChanges();
             return addServicio.Entity;
         }
- 
+
         public Servicio Delete(int id)
         {
             var encomienda = _appContext.Servicios.Find(id);
@@ -61,6 +61,6 @@ namespace ProyectoCiclo3.App.Persistencia.AppRepositorios
         }
          return null;  
         }
- 
+
     }
 }
