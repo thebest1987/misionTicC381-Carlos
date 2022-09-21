@@ -2,32 +2,36 @@
 @model ProyectoCiclo3.App.Frontend.Pages.ListUsuarioModel
 @{
 }
- 
+ <h1>Listado de Usuarios</h1>
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>Id</th>
-      <th>Nombre</th>
-      <th>Apellidos</th>
-      <th>Direccion</th>
-      <th>Telefono</th>
+      <th scope="col">Id</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellidos</th>
+      <th scope="col">Direccion</th>
+      <th scope="col">Telefono</th>
+      <th scope="col">Ciudad</th>
       <th>Acciones</th>
     </tr>
   </thead>
-  <tbody>
+
      @foreach (var usuario in Model.Usuarios)
     {
-        <tr>
+          <tr>
             <td>@usuario.id</td>
             <td>@usuario.nombre</td>
             <td>@usuario.apellidos</td>
             <td>@usuario.direccion</td>
             <td>@usuario.telefono</td>
+            <td>@usuario.ciudad</td>
             <td>
-              <div class="btn-group" role="group" aria-label="Basic example">
-               <a class="btn btn-info" asp-page="./Details" asp-route-usuarioId="@usuario.id"><i class="fas fa-adjust"></i>Ver</a>
-               <a class="btn btn-info" asp-page="./Edit" asp-route-usuarioId="@usuario.id">Editar</a>
+            
+                <a class="btn btn-info" asp-page="./Details" asp-route-usuarioId="@usuario.id"><i class="fas fa-adjust"></i>Ver</a>
+				        <a class="btn btn-info" asp-page="./Edit" asp-route-usuarioId="@usuario.id">Editar</a>
                 
+
+
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal_@usuario.id">
                     Eliminar
                   </button>
@@ -42,22 +46,20 @@
                           </button>
                         </div>
                         <div class="modal-body">
-                          ¿Esta seguro que desea eliminar el usuario: @usuario.nombre ?
+                          ¿Esta seguro que desea eliminar El usuario: @usuario.nombre  @usuario.apellidos?
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                         <form method="POST">
-                            <input type="number" class="form-control d-none" id="id" name="id" placeholder="id" asp-for="@usuario.id">
-                            <button type="submit"class="btn btn-danger" href="">Eliminar</button>
-                        </form>                         
+                        <input type="number" class="form-control d-none" id="id" name="id" placeholder="id" asp-for="@usuario.id">
+                        <button type="submit"class="btn btn-danger" href="">Eliminar</button>
+                        </form>
                        </div>
                       </div>
                     </div>
-                  </div>
-              </div>
+                  </div>             
             </td>
-        </tr>
+          </tr>
     }
-
-  </tbody>
+  
 </table>

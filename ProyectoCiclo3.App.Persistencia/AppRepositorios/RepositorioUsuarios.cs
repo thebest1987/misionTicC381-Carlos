@@ -6,10 +6,8 @@ using System;
 namespace ProyectoCiclo3.App.Persistencia.AppRepositorios
 {
     public class RepositorioUsuarios
-    { 
-        
-        private readonly AppContext _appContext = new AppContext();   
-
+    {
+        private readonly AppContext _appContext = new AppContext();
         public IEnumerable<Usuario> GetAll()
         {
            return _appContext.Usuarios;
@@ -18,7 +16,7 @@ namespace ProyectoCiclo3.App.Persistencia.AppRepositorios
         public Usuario GetWithId(int id){
             return _appContext.Usuarios.Find(id);
         }
-
+        
         public Usuario Update(Usuario newUsuario){
             var usuario = _appContext.Usuarios.Find(newUsuario.id);
             if(usuario != null){
@@ -26,6 +24,7 @@ namespace ProyectoCiclo3.App.Persistencia.AppRepositorios
                 usuario.apellidos = newUsuario.apellidos;
                 usuario.direccion = newUsuario.direccion;
                 usuario.telefono = newUsuario.telefono;
+                usuario.ciudad = newUsuario.ciudad;
                 //Guardar en base de datos
                  _appContext.SaveChanges();
             }
@@ -34,10 +33,12 @@ namespace ProyectoCiclo3.App.Persistencia.AppRepositorios
 
         public Usuario Create(Usuario newUsuario)
         {
-           var addUsuario = _appContext.Usuarios.Add(newUsuario);
+            var addUsuario = _appContext.Usuarios.Add(newUsuario);
             //Guardar en base de datos
             _appContext.SaveChanges();
+
             return addUsuario.Entity;
+            
         }
 
         public Usuario Delete(int id)
@@ -50,6 +51,5 @@ namespace ProyectoCiclo3.App.Persistencia.AppRepositorios
         }
          return null;  
         }
-
     }
 }

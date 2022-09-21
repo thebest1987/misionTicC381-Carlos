@@ -6,25 +6,26 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ProyectoCiclo3.App.Persistencia.AppRepositorios;
 using ProyectoCiclo3.App.Dominio;
-
+ 
 namespace ProyectoCiclo3.App.Frontend.Pages
-{
+{   
+    
     public class FormUsuarioModel : PageModel
     {
-       private readonly RepositorioUsuarios repositorioUsuarios;
+        private readonly RepositorioUsuarios repositorioUsuarios;
         [BindProperty]
         public Usuario Usuario {get;set;}
- 
+        
         public FormUsuarioModel(RepositorioUsuarios repositorioUsuarios)
        {
             this.repositorioUsuarios=repositorioUsuarios;
        }
- 
+        
         public void OnGet()
         {
  
         }
- 
+
         public IActionResult OnPost()
         {
             if(!ModelState.IsValid)
@@ -35,5 +36,4 @@ namespace ProyectoCiclo3.App.Frontend.Pages
             return RedirectToPage("./List");
         }
     }
-
 }
